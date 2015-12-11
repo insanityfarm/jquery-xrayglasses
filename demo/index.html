@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="../dist/jquery.xrayglasses.css" media="all" />
+    <script src="dependencies.js" type="application/javascript"></script>
+    <script src="../dist/jquery.xrayglasses.js" type="application/javascript"></script>
+    <script type="application/javascript">
+
+        $(document).on('ready', function(){
+
+            // if client supports SVG foreignobject, initialize xrayglasses
+            if(Modernizr.svgforeignobject) {
+                $('#contentWrapper').xrayglasses({
+                    radius: 250
+                });
+            }
+
+        });
+
+    </script>
+</head>
+
+<body>
+    <div id="contentWrapper">
+        <h1>Xrayglasses Demo Page</h1>
+        <p>If your browser supports SVG foreignobject, press and hold "X" to activate Xrayglasses mode.</p>
+        <p>Coming soon:</p>
+        <ul>
+            <li>Documentation</li>
+            <li>Hidden "xray-only" classes for adding secret content</li>
+            <li>Better ways to customize xray styles and lens shape</li>
+            <li>Support for touch input</li>
+            <li>Better compatibility with your existing CSS</li>
+            <li>Prevent activation when textual form elements have focus</li>
+        </ul>
+    </div>
+</body>
+
+</html>

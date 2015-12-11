@@ -1,0 +1,20 @@
+{
+  "name": "jquery-xrayglasses",
+  "version": "0.1.0",
+  "description": "jQuery plugin for adding a cool X-ray vision effect to pages",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/insanityfarm/jquery-xrayglasses.git"
+  },
+  "author": "Parker Smith",
+  "bugs": {
+    "url": "https://github.com/insanityfarm/jquery-xrayglasses/issues"
+  },
+  "homepage": "https://github.com/insanityfarm/jquery-xrayglasses#readme",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-notify": "^2.2.0",
+    "gulp-sass": "^2.1.1",
+    "gulp-uglify": "^1.5.1"
+  }
+}
