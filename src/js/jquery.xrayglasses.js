@@ -33,6 +33,7 @@
             xrayglasses.data = {
                 page: $(document),
                 viewport: $(window),
+                body: $('body'),
                 pageWrapper: xrayglasses.$elem
             };
             
@@ -109,8 +110,9 @@
             });
         
             xrayglasses.data.xrayglassesContent.css({
-                width: xrayglasses.data.pageWidth,
-                height: xrayglasses.data.pageHeight
+                height: xrayglasses.data.pageHeight,
+                paddingLeft: xrayglasses.data.body.css('marginLeft'),
+                paddingRight: xrayglasses.data.body.css('marginRight')
             });
             
             // the dimension change may have affected fixed-position elements too
