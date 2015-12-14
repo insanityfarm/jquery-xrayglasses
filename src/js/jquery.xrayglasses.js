@@ -55,52 +55,55 @@
         
         // insert the xrayview HTML + SVG into the page
         attach: function(){
+        
+            // callback for attaching after lens image is ready
+            var onImageReady = function(){
+                            
+                xrayglasses.data.lensWidth = this.width * xrayglasses.config.scale;
+                xrayglasses.data.lensHeight = this.height * xrayglasses.config.scale;
+                
+                // generate the markup for the xray view
+                var xrayview = 
+                    $('<svg id="xrayglasses" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">' +
+                        '<defs>' +
+                            '<mask id="mask" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse">' +
+                                '<image width="' + xrayglasses.data.lensWidth + 'px" height="' + xrayglasses.data.lensHeight + 'px" xlink:href="' + xrayglasses.data.lensImage + '"></image>' +
+                            '</mask>' +
+                        '</defs>' +
+                        '<rect id="xrayglassesOverlay" width="100%" height="100%" />' +
+                        '<foreignObject width="100%" height="100%" style="mask: url(#mask);">' +
+                            '<div class="wrapper"></div>' +
+                        '</foreignObject>' +
+                    '</svg>');
+
+                // append it to the page
+                xrayglasses.data.pageWrapper.after(xrayview);
+
+                // add some more data variables            
+                xrayglasses.data.xrayglasses = $('#xrayglasses');
+                xrayglasses.data.overlay = $('#xrayglassesOverlay');
+                xrayglasses.data.embeddedMaskLens = $('#mask image');
+                xrayglasses.data.xrayglassesContent = $('#xrayglasses .wrapper');
+
+                xrayglasses.data.xrayglassesContent.css({
+                    '-webkit-mask-image':   "url('" + xrayglasses.data.lensImage + "')",
+                    '-webkit-mask-size':    xrayglasses.data.lensWidth + "px " + xrayglasses.data.lensHeight + "px"
+                });
+    
+                // apply options
+                xrayglasses.data.overlay.css({
+                    fill: 'rgba(0,0,0,' + xrayglasses.config.overlayOpacity + ')'
+                });
+
+                // do an initial render 
+                xrayglasses.update();
+                
+            }
             
-            // fetch the lens image and get its dimensions
+            // fetch the lens image and get its dimensions before attaching
             $("<img/>", {
                 src:    xrayglasses.data.lensImage = xrayglasses.getLensImage(),
-                load:   function(){
-                            
-                            xrayglasses.data.lensWidth = this.width * xrayglasses.config.scale;
-                            xrayglasses.data.lensHeight = this.height * xrayglasses.config.scale;
-                            
-                            // generate the markup for the xray view
-                            var xrayview = 
-                                $('<svg id="xrayglasses" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">' +
-                                    '<defs>' +
-                                        '<mask id="mask" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse">' +
-                                            '<image width="' + xrayglasses.data.lensWidth + 'px" height="' + xrayglasses.data.lensHeight + 'px" xlink:href="' + xrayglasses.data.lensImage + '"></image>' +
-                                        '</mask>' +
-                                    '</defs>' +
-                                    '<rect id="xrayglassesOverlay" width="100%" height="100%" />' +
-                                    '<foreignObject width="100%" height="100%" style="mask: url(#mask);">' +
-                                        '<div class="wrapper"></div>' +
-                                    '</foreignObject>' +
-                                '</svg>');
-
-                            // append it to the page
-                            xrayglasses.data.pageWrapper.after(xrayview);
-            
-                            // add some more data variables            
-                            xrayglasses.data.xrayglasses = $('#xrayglasses');
-                            xrayglasses.data.overlay = $('#xrayglassesOverlay');
-                            xrayglasses.data.embeddedMaskLens = $('#mask image');
-                            xrayglasses.data.xrayglassesContent = $('#xrayglasses .wrapper');
-            
-                            xrayglasses.data.xrayglassesContent.css({
-                                '-webkit-mask-image':   "url('" + xrayglasses.data.lensImage + "')",
-                                '-webkit-mask-size':    xrayglasses.data.lensWidth + "px " + xrayglasses.data.lensHeight + "px"
-                            });
-                
-                            // apply options
-                            xrayglasses.data.overlay.css({
-                                fill: 'rgba(0,0,0,' + xrayglasses.config.overlayOpacity + ')'
-                            });
-            
-                            // do an initial render 
-                            xrayglasses.update();
-                            
-                        }
+                load:   onImageReady
             });
               
         },
