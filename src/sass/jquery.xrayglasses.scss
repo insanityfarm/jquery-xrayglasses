@@ -14,6 +14,10 @@
     left: 0;
     z-index: 9999;
     pointer-events: none;
+    
+    mask {
+        mask-type: alpha;
+    }
 
     .wrapper {
         color: #d6efff;
@@ -22,7 +26,6 @@
         right: 0;
         top: 0;
         background-color: #1a1a1a;
-        -webkit-mask-image: url('jquery.xrayglasses.svg');
         -webkit-mask-repeat: no-repeat;
     }
 

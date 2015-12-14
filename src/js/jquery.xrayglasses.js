@@ -18,9 +18,9 @@
         // default configuration, can be overridden at instatiation
         defaults: {
             overlayOpacity: 0.8,
-            width: 150,
-            height: 150,
-            toggleKeyCode: 88, // 88 corresponds to "X" key!
+            toggleKeyCode:  88, // 88 corresponds to "X" key!
+            lens:           'round',
+            scale:          1.0
         },
         
         // constructor function
@@ -31,10 +31,13 @@
             
             // set up global vars to keep track of things
             xrayglasses.data = {
-                page: $(document),
-                viewport: $(window),
-                body: $('body'),
-                pageWrapper: xrayglasses.$elem
+                page:           $(document),
+                viewport:       $(window),
+                body:           $('body'),
+                pageWrapper:    xrayglasses.$elem,
+                lensImage:      '',
+                lensWidth:      0,
+                lensHeight:     0
             };
             
             xrayglasses.attach();
@@ -45,11 +48,6 @@
                 .on('resize', xrayglasses.update)
                 .on('mousemove', xrayglasses.move)
                 .on('keyup keydown', xrayglasses.keypress);
-                
-            // apply options
-            xrayglasses.data.overlay.css({
-                fill: 'rgba(0,0,0,' + xrayglasses.config.overlayOpacity + ')'
-            });
             
             return xrayglasses;
             
@@ -58,34 +56,52 @@
         // insert the xrayview HTML + SVG into the page
         attach: function(){
             
-            // generate the markup for the xray view
-            var xrayview = 
-                $('<svg id="xrayglasses" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">' +
-                    '<defs>' +
-                        '<filter id="filter">' +
-                            '<feGaussianBlur stdDeviation="10"></feGaussianBlur>' +
-                        '</filter>' +
-                        '<mask id="mask" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse">' +
-                            '<ellipse cx="50%" cy="50%" rx="120px" ry="120px" fill="white" filter="url(#filter)" />' +
-                        '</mask>' +
-                    '</defs>' +
-                    '<rect id="xrayglassesOverlay" width="100%" height="100%" />' +
-                    '<foreignObject width="100%" height="100%" style="mask: url(#mask);">' +
-                        '<div class="wrapper"></div>' +
-                    '</foreignObject>' +
-                '</svg>');
+            // fetch the lens image and get its dimensions
+            $("<img/>", {
+                src:    xrayglasses.data.lensImage = xrayglasses.getLensImage(),
+                load:   function(){
+                            
+                            xrayglasses.data.lensWidth = this.width * xrayglasses.config.scale;
+                            xrayglasses.data.lensHeight = this.height * xrayglasses.config.scale;
+                            
+                            // generate the markup for the xray view
+                            var xrayview = 
+                                $('<svg id="xrayglasses" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">' +
+                                    '<defs>' +
+                                        '<mask id="mask" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse">' +
+                                            '<image width="' + xrayglasses.data.lensWidth + 'px" height="' + xrayglasses.data.lensHeight + 'px" xlink:href="' + xrayglasses.data.lensImage + '"></image>' +
+                                        '</mask>' +
+                                    '</defs>' +
+                                    '<rect id="xrayglassesOverlay" width="100%" height="100%" />' +
+                                    '<foreignObject width="100%" height="100%" style="mask: url(#mask);">' +
+                                        '<div class="wrapper"></div>' +
+                                    '</foreignObject>' +
+                                '</svg>');
 
-            // append it to the page
-            xrayglasses.data.pageWrapper.after(xrayview);
+                            // append it to the page
+                            xrayglasses.data.pageWrapper.after(xrayview);
             
-            // add some more data variables            
-            xrayglasses.data.xrayglasses = $('#xrayglasses');
-            xrayglasses.data.overlay = $('#xrayglassesOverlay');
-            xrayglasses.data.embeddedMaskEllipse = $('#mask ellipse');
-            xrayglasses.data.xrayglassesContent = $('#xrayglasses .wrapper');
+                            // add some more data variables            
+                            xrayglasses.data.xrayglasses = $('#xrayglasses');
+                            xrayglasses.data.overlay = $('#xrayglassesOverlay');
+                            xrayglasses.data.embeddedMaskLens = $('#mask image');
+                            xrayglasses.data.xrayglassesContent = $('#xrayglasses .wrapper');
             
-            // do an initial render 
-            xrayglasses.update();
+                            xrayglasses.data.xrayglassesContent.css({
+                                '-webkit-mask-image':   "url('" + xrayglasses.data.lensImage + "')",
+                                '-webkit-mask-size':    xrayglasses.data.lensWidth + "px " + xrayglasses.data.lensHeight + "px"
+                            });
+                
+                            // apply options
+                            xrayglasses.data.overlay.css({
+                                fill: 'rgba(0,0,0,' + xrayglasses.config.overlayOpacity + ')'
+                            });
+            
+                            // do an initial render 
+                            xrayglasses.update();
+                            
+                        }
+            });
               
         },
         
@@ -123,13 +139,13 @@
         move: function(e){
             // WebKit
             xrayglasses.data.xrayglassesContent.css({
-                '-webkit-mask-position-x': e.pageX - 150,
-                '-webkit-mask-position-y': e.pageY - 150
+                '-webkit-mask-position-x': e.pageX - (xrayglasses.data.lensWidth / 2),
+                '-webkit-mask-position-y': e.pageY - (xrayglasses.data.lensHeight / 2)
             });
             // other browsers
-            xrayglasses.data.embeddedMaskEllipse.attr({
-                cx: e.pageX,
-                cy: e.pageY
+            xrayglasses.data.embeddedMaskLens.attr({
+                x: e.pageX - (xrayglasses.data.lensWidth / 2),
+                y: e.pageY - (xrayglasses.data.lensHeight / 2)
             });
         },
         
@@ -156,6 +172,14 @@
                     xrayglasses.data.xrayglasses.fadeTo(100, doShow ? 1 : 0);
                 }
             }
+        },
+        
+        // return the URL to the lens image, either by name for a predefined one
+        getLensImage: function(){
+            var predefinedLenses = {
+                round:  'round.png'
+            };
+            return predefinedLenses.hasOwnProperty(xrayglasses.config.lens) ? predefinedLenses[xrayglasses.config.lens] : xrayglasses.config.lens;
         }
         
     };
