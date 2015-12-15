@@ -1,5 +1,3 @@
-// Probably precede use of this plugin with Modernizr to validate SVG foreignObject support
-
 // Many thanks to Mark Dalgleish for his base jQuery plugin template:
 // http://markdalgleish.com/2011/05/creating-highly-configurable-jquery-plugins/
 
@@ -19,7 +17,7 @@
         defaults: {
             overlayOpacity: 0.8,
             toggleKeyCode:  88, // 88 corresponds to "X" key!
-            lens:           'round',
+            lens:           'binoculars',
             scale:          1.0
         },
         
@@ -171,23 +169,19 @@
                 var isPressed = (e.type === 'keydown');
                 var doShow = xrayglasses.data.xrayglasses.css('opacity') < 0.5;
                 if(isPressed === doShow) {
-                    //xrayglassesPrompt.fadeTo(150, doShow ? 0 : 1);
                     xrayglasses.data.xrayglasses.fadeTo(100, doShow ? 1 : 0);
                 }
             }
         },
         
-        // return the URL to the lens image, either by name for a predefined one
+        // return the URL to the lens image, either by URL or by name for a predefined one
         getLensImage: function(){
-            var predefinedLenses = {
-                round:  'round.png'
-            };
             return predefinedLenses.hasOwnProperty(xrayglasses.config.lens) ? predefinedLenses[xrayglasses.config.lens] : xrayglasses.config.lens;
         }
         
     };
     
-    XRayGlasses.defaults = XRayGlasses.prototype.defaults
+    XRayGlasses.defaults = XRayGlasses.prototype.defaults;
     
     $.fn.xrayglasses = function(options) {
         return this.each(function() {
@@ -198,3 +192,6 @@
     window.XRayGlasses = XRayGlasses;
 
 })(window, jQuery);
+
+// set up container for lens definitions (which will be concatenated below this by gulp) 
+var predefinedLenses = {};

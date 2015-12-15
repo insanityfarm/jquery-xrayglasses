@@ -1,0 +1,1 @@
+predefinedLenses['{{className}}'] = '{{dataURISchema}}';

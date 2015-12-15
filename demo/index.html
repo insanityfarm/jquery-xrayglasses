@@ -4,7 +4,7 @@
 <head>
     <link rel="stylesheet" type="text/css" href="../dist/jquery.xrayglasses.css" media="all" />
     <script src="dependencies.js" type="application/javascript"></script>
-    <script src="../dist/jquery.xrayglasses.js" type="application/javascript"></script>
+    <script src="../dist/jquery.xrayglasses.min.js" type="application/javascript"></script>
     <script type="application/javascript">
 
         $(document).on('ready', function(){
@@ -12,7 +12,8 @@
             // if client supports SVG foreignobject, initialize xrayglasses
             if(Modernizr.svgforeignobject) {
                 $('#contentWrapper').xrayglasses({
-                    scale:  0.5
+                    lens: 'round-soft',
+                    scale:  0.75
                 });
             }
 

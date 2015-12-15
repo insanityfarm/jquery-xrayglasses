@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="300"
+   height="300"
+   viewBox="0 0 300 300"
+   id="svg3406"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="crosshair-inverted2.svg">
+  <defs
+     id="defs3408">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient4623">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop4625" />
+      <stop
+         style="stop-color:#000000;stop-opacity:0.50196081"
+         offset="1"
+         id="stop4627" />
+    </linearGradient>
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4623"
+       id="radialGradient4629"
+       cx="150"
+       cy="150"
+       fx="150"
+       fy="150"
+       r="139.91211"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.88"
+     inkscape:cx="145.27386"
+     inkscape:cy="140.09849"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     units="px"
+     inkscape:window-width="1280"
+     inkscape:window-height="751"
+     inkscape:window-x="0"
+     inkscape:window-y="1"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata3411">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-752.36216)">
+    <circle
+       style="fill:none;fill-opacity:0.50196078;stroke:#000000;stroke-width:3;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.50196081"
+       id="path4631"
+       cx="149.75"
+       cy="902.61218"
+       r="144.93945" />
+    <path
+       style="fill:url(#radialGradient4629);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:15;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 147.5 10.087891 A 140 140 0 0 0 10.125 147.5 L 30 147.5 L 30 140 L 35 140 L 35 147.5 L 50 147.5 L 50 140 L 55 140 L 55 147.5 L 70 147.5 L 70 140 L 75 140 L 75 147.5 L 90 147.5 L 90 140 L 95 140 L 95 147.5 L 110 147.5 L 110 140 L 115 140 L 115 147.5 L 130 147.5 L 130 140 L 135 140 L 135 147.5 L 147.5 147.5 L 147.5 135 L 140 135 L 140 130 L 147.5 130 L 147.5 115 L 140 115 L 140 110 L 147.5 110 L 147.5 95 L 140 95 L 140 90 L 147.5 90 L 147.5 75 L 140 75 L 140 70 L 147.5 70 L 147.5 55 L 140 55 L 140 50 L 147.5 50 L 147.5 35 L 140 35 L 140 30 L 147.5 30 L 147.5 10.087891 z M 152.5 10.125 L 152.5 30 L 160 30 L 160 35 L 152.5 35 L 152.5 50 L 160 50 L 160 55 L 152.5 55 L 152.5 70 L 160 70 L 160 75 L 152.5 75 L 152.5 90 L 160 90 L 160 95 L 152.5 95 L 152.5 110 L 160 110 L 160 115 L 152.5 115 L 152.5 130 L 160 130 L 160 135 L 152.5 135 L 152.5 147.5 L 165 147.5 L 165 140 L 170 140 L 170 147.5 L 185 147.5 L 185 140 L 190 140 L 190 147.5 L 205 147.5 L 205 140 L 210 140 L 210 147.5 L 225 147.5 L 225 140 L 230 140 L 230 147.5 L 245 147.5 L 245 140 L 250 140 L 250 147.5 L 265 147.5 L 265 140 L 270 140 L 270 147.5 L 289.91211 147.5 A 140 140 0 0 0 152.5 10.125 z M 10.087891 152.5 A 140 140 0 0 0 147.5 289.875 L 147.5 270 L 140 270 L 140 265 L 147.5 265 L 147.5 250 L 140 250 L 140 245 L 147.5 245 L 147.5 230 L 140 230 L 140 225 L 147.5 225 L 147.5 210 L 140 210 L 140 205 L 147.5 205 L 147.5 190 L 140 190 L 140 185 L 147.5 185 L 147.5 170 L 140 170 L 140 165 L 147.5 165 L 147.5 152.5 L 135 152.5 L 135 160 L 130 160 L 130 152.5 L 115 152.5 L 115 160 L 110 160 L 110 152.5 L 95 152.5 L 95 160 L 90 160 L 90 152.5 L 75 152.5 L 75 160 L 70 160 L 70 152.5 L 55 152.5 L 55 160 L 50 160 L 50 152.5 L 35 152.5 L 35 160 L 30 160 L 30 152.5 L 10.087891 152.5 z M 152.5 152.5 L 152.5 165 L 160 165 L 160 170 L 152.5 170 L 152.5 185 L 160 185 L 160 190 L 152.5 190 L 152.5 205 L 160 205 L 160 210 L 152.5 210 L 152.5 225 L 160 225 L 160 230 L 152.5 230 L 152.5 245 L 160 245 L 160 250 L 152.5 250 L 152.5 265 L 160 265 L 160 270 L 152.5 270 L 152.5 289.91211 A 140 140 0 0 0 289.875 152.5 L 270 152.5 L 270 160 L 265 160 L 265 152.5 L 250 152.5 L 250 160 L 245 160 L 245 152.5 L 230 152.5 L 230 160 L 225 160 L 225 152.5 L 210 152.5 L 210 160 L 205 160 L 205 152.5 L 190 152.5 L 190 160 L 185 160 L 185 152.5 L 170 152.5 L 170 160 L 165 160 L 165 152.5 L 152.5 152.5 z "
+       id="path3414"
+       transform="translate(0,752.36216)" />
+  </g>
+</svg>
